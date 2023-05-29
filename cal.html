@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- googlefont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">    
+
+    <link rel="stylesheet" href="cal.css">
+    <title>Calculator</title>
+</head>
+<body>
+
+    <div class="container" id="one">
+        <h3 id="tro">Calculator</h3>
+        <input type="text" name="screen" id="screen">
+        <div class="numbers">
+            <div class="row">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button class="del">DEL</button>
+            </div>
+            <div class="row">
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button id="+">+</button>
+            </div>
+            <div class="row">
+                <button id="1" >1</button>
+                <button id="2" >2</button>
+                <button>3</button>
+                <button>-</button>
+            </div>
+            <div class="row">
+                <button>.</button>
+                <button>0</button>
+                <button>/</button>
+                <button>x</button>
+            </div>
+            <div class="row">
+                <button class="reset">RESET</button>
+                <button class="equals" id="equals" >=</button>
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+<script>
+    let screen = document.getElementById('screen');
+buttons = document.querySelectorAll('button');
+let screenValue = '';
+for (item of buttons) {
+    item.addEventListener('click', (e) => {
+        buttonText = e.target.innerText;
+        if (buttonText == 'x') {
+            buttonText = '*';
+            screenValue += buttonText;
+            screen.value = screenValue;
+        }
+        else if (buttonText == 'RESET') {
+            screenValue = "";
+            screen.value = screenValue;
+        }
+        else if (buttonText == '=') {
+            let result = eval(screen.value);
+            screen.value = screenValue = result;
+        }
+        else if( buttonText == 'DEL'){
+            if(screen.value == 'undefined'){
+                screen.value = '';
+            }
+            screenValue = screenValue.slice(0,-1);
+            screen.value = screenValue;
+        }
+        else {
+            screenValue += buttonText;
+            screen.value = screenValue;
+        }
+        if(buttonText == 'Shapes'){
+            screen.value = '';
+            
+        }
+
+    })
+}
+
+var input = document.getElementById("screen");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("equals").click();
+  }
+});
+
+</script>
+</html>
